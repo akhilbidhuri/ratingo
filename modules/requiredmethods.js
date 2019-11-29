@@ -30,8 +30,13 @@ let getRatingsDB = (pid, offset, limit) => {
                 reject(err)
             }
             else{
-                console.log('Results: ',result.rows)
-                resolve(result.rows)
+                if(result.rows.length==0){
+                    reject('No output')
+                }
+                else{
+                    console.log('Results: ',result.rows)
+                    resolve(result.rows)
+                }
             }
         })
     })
@@ -45,8 +50,13 @@ let getRatingDB = (offset, limit) => {
                 reject(err)
             }
             else{
-                console.log('Results: ',result.rows)
-                resolve(result.rows)
+                if(result.rows.length==0){
+                    reject('No output')
+                }
+                else{
+                    console.log('Results: ',result.rows)
+                    resolve(result.rows)
+                }            
             }
         })
     })
