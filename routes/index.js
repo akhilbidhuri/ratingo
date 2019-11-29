@@ -1,5 +1,5 @@
 const allRoutes = require('express').Router();
-const sysRoutes = require('../modules/endpoints/rating.routes');
+const sysRoutes = require('../modules/endpoints/endpoints.routes');
 
 allRoutes.use(sysRoutes);
 

@@ -4,16 +4,21 @@
   "description": "Review Service, Providing APIs to submit and get reviews.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Akhil Bidhuri",
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.5.5",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "pg": "^7.14.0",
+    "request": "^2.88.0",
+    "uuid": "^3.3.3"
   }
 }
