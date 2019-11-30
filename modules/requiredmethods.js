@@ -1,4 +1,4 @@
-const { GET_RATINGS, GET_RATING} = require('../constants/psqlQueries')
+const {GET_COUNT, GET_RATINGS, GET_RATING} = require('../constants/psqlQueries')
 const {publishToQueue} = require('../AMQP/index')
 const pool = require("../db")
 let publish = async( data ) => {
@@ -55,7 +55,15 @@ let getRatingDB = (offset, limit) => {
                 }
                 else{
                     console.log('Results: ',result.rows)
-                    resolve(result.rows)
+                    pool.query(GET_COUNT, function(err, res){
+                        if(err)
+                            reject(err)
+                        else{
+                            resolve({data:result.rows, count:res.rows[0].count})
+                        }
+                    }
+                    
+                    )
                 }            
             }
         })

@@ -2,7 +2,7 @@ printf "\n\n\t\t\tRATINGO Product Rating Service\n\n"
 
 #request to get Token
 printf "\n\nrequest to get Insert New Rating\n"
-curl -X GET \
+curl -X POST \
     'https://ratingo.herokuapp.com/newRating'\
     -H "Content-Type: application/json"\
     --data '{ "rid":"2010ndjkd", "uid":"674jd", "rating":4, "comment":"very good", "pid": "1"}' \
@@ -52,7 +52,7 @@ curl -X GET \
   -H 'Cache-Control: no-cache' \
 
 #request with missing  input
-printf "\n\nrequest with wrong input\n"
+printf "\n\nrequest with missing input\n"
 curl -X GET \
   'https://ratingo.herokuapp.com/getRating?offset=100&limit=5' \
   -H 'token:'"$token" \

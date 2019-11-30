@@ -49,7 +49,7 @@ var getRating = (req, res) =>{
   if(req.query.offset && req.query.limit)
   getRatingDB(req.query.offset, req.query.limit)
   .then(resp=>
-    res.status(200).json({ msg: respones.genericSuccess, data: resp})
+    res.status(200).json({ msg: respones.genericSuccess, data: resp.data, count:resp.count})
   )
   .catch(err=>{
       console.log('ERROR: ', err)
