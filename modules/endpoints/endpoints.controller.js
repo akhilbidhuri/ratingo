@@ -6,7 +6,13 @@ const {publish, getRatingDB, getRatingsDB} = require('../requiredmethods')
     This controller is for getting the request from client to insert new rating for a product. 
     The controller acts like a producer and pushes the data into the rabbitmq queue. and responds to client.
 *******************/
+
 var newRating = async function(req, res) {
+  let seed = Math.random()*1000
+  seed = seed.toPrecision(3)
+  let s = Math.round(Math.random()*10)
+  let rid = seed + uuidv1().slice(s, s+6)
+  req.body.rid = rid
   if(req.body.rid && req.body.uid &&req.body.rating && req.body.comment && req.body.pid)
    publish(req.body)
    .then(resp=>{

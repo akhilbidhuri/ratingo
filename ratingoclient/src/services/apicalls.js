@@ -2,7 +2,7 @@ import api from './api'
 
 export default {
     newRating (rating){
-        return api.post('newRating', rating) 
+        return api().post('newRating', rating) 
     },
     getRating (offset, limit) {
       return api().get('getRating', {params:{offset:offset, limit:limit}})

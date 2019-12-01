@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const logger = require('morgan');
 var bodyParser = require('body-parser');
 const consumer = require('./AMQP/consumer')
+var servestatic = require('serve-static')
 const result = dotenv.config();
 if (result.error) {
   throw result.error;
@@ -19,11 +20,7 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-  res.status(200).json({
-    msg: 'Welcome to Review Service',
-  });
-});
+app.use(servestatic(__dirname + "/build"))
 
 app.use(allRoutes);
 app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));

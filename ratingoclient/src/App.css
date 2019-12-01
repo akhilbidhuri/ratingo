@@ -26,25 +26,92 @@
   font-family: 'Alata', sans-serif;
   font-size: 200%;
   padding: 0;
-  margin-left: 2%;
+  
   margin-top: 0;
   color:#fff;
+  border: 1px solid white;
+  border-radius:20px;
+}
+.rating{
+  font-family: 'Alata', sans-serif;
+  padding-right: 1%;
+  padding-left: 1%;
+  margin-top: 0;
+  color:#fff;
+  border: 1px solid white;
+  border-radius:20px;
 }
 .topbar{
-  position: fixed;
+  position: absolute;
   margin: 0;
   width: 100vw;
   padding:0;
+  margin-bottom:10%;
+  top: 0;
 }
 .cards{
   background-color: #2d313a;
   border-radius: 20px;
   box-shadow:2px 5px 6px #12121f;
   margin: 3%;
+  min-height: 15vh;
+  cursor: pointer;
+  display: inline;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .flex-container{
   margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
+}
+.next{
+  color: white;
+  cursor: pointer;
+  margin:1%;
+  padding: 1%;
+}
+.next:hover{
+  background: #333;
+}
+.prev{
+  color: white;
+  cursor: pointer;
+  margin:1%;
+  padding: 1%;
+}
+.prev:hover{
+  background: #333;
+}
+.cusInput{
+  text-align: center;
+  background: #121212;
+  border-radius: 15px;
+  width: 5vw;
+  height: 3vh;
+  border: none;
+  color:#fff;
+  font-size: 2vh;
+  padding: 1%;
+  box-shadow: 5px 5px 20px  black;
+}
+.cusBut1{
+  margin-top: 5%;
+  border-radius: 15px;
+  width: 8vw;
+  height: 5vh;
+  border: none;
+  color:#343434;
+  font-size: 2vh;
+  font-weight: 600;
+  padding: 0.6%;
+  box-shadow: 3px 3px 9px #014b01;
+  background:  #69bf78;
+}
+.cusBut1:hover{
+  color: #158eff;
+  box-shadow: 5px 5px 15px hsl(120, 95%, 30%);
+  transform: translate(0,-2px);
+  transition: 0.5ms all;
 }

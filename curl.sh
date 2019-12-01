@@ -5,7 +5,7 @@ printf "\n\nrequest to get Insert New Rating\n"
 curl -X POST \
     'https://ratingo.herokuapp.com/newRating'\
     -H "Content-Type: application/json"\
-    --data '{ "rid":"2010ndjkd", "uid":"674jd", "rating":4, "comment":"very good", "pid": "1"}' \
+    --data '{  "uid":"674jd", "rating":4, "comment":"very good", "pid": "1"}' \
 
 
 #-------------------request to get Ratings for Catalogue page with avg Ratings and no of ratings for products------------------------#
