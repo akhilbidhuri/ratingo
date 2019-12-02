@@ -1,7 +1,7 @@
 
 const uuidv1 = require('uuid/v1');
 const respones = require('../../constants/responseMessages');
-const {publish, getRatingDB, getRatingsDB} = require('../requiredmethods')
+const {publish, getRatingDB, getRatingsDB, checkUser} = require('../requiredmethods')
 /****************** 
     This controller is for getting the request from client to insert new rating for a product. 
     The controller acts like a producer and pushes the data into the rabbitmq queue. and responds to client.
@@ -14,17 +14,25 @@ var newRating = async function(req, res) {
   let rid = seed + uuidv1().slice(s, s+6)
   req.body.rid = rid
   if(req.body.rid && req.body.uid &&req.body.rating && req.body.comment && req.body.pid)
-   publish(req.body)
-   .then(resp=>{
-    if(resp)
-        res.status(200).send({ msg: respones.genericSuccess});
-      
-    else
-      res.status(500).send({ msg: respones.genericError});
-   })
+  checkUser(req.body.uid, req.body.pid)
+  .then(res=>{
+    publish(req.body)
+    .then(resp=>{
+        if(resp)
+            res.status(200).send({ msg: respones.genericSuccess});
+          
+        else
+          res.status(500).send({ msg: respones.genericError});
+      })
+      .catch(err=>{
+        console.log('ERROR: ', err);
+        res.status(500).send({ msg: respones.genericError});
+      })
+    }
+   )
    .catch(err=>{
-     console.log('ERROR: ', err);
-     res.status(500).send({ msg: respones.genericError});
+    
+    res.status(400).send({ msg: respones.genericError});
    })
    else
    res.status(400).send({ msg: respones.genericInputError});

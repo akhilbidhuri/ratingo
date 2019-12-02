@@ -1,4 +1,4 @@
-const {GET_COUNT, GET_RATINGS, GET_RATING} = require('../constants/psqlQueries')
+const {GET_COUNT, GET_RATINGS, GET_RATING, CHECK_UID} = require('../constants/psqlQueries')
 const {publishToQueue} = require('../AMQP/index')
 const pool = require("../db")
 let publish = async( data ) => {
@@ -69,9 +69,24 @@ let getRatingDB = (offset, limit) => {
         })
     })
 }
+let checkUser = (uid, pid) => {
+    return new Promise((resolve, reject)=>{
+        pool.query(CHECK_UID, [uid, pid], function(err, result){
+            if(err)
+                reject(err)
+            else{
+                if(result.rows.length==0)
+                    resolve('not present')
+                else
+                    reject('present')
+            }
+        })
+    });
+}
 
 module.exports = {
     publish,
     getRatingDB,
-    getRatingsDB
+    getRatingsDB,
+    checkUser
 }

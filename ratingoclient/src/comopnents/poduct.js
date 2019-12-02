@@ -61,7 +61,7 @@ function Product(props){
                     <h1 className="title" style={{padding:'10%', border:'0'}}>{state.data.pid}</h1>
                 </div>
                 <div style={{ marginLeft:'10%', marginTop:'5%'}}>
-                    <h2>Avg Rating: {state.data.avg}</h2>
+                    <h2>Avg Rating: {state.data.avg.toPrecision(3)}</h2>
                     <h3>No. of Ratings: {state.data.count}</h3>
                 </div>
               </div>
